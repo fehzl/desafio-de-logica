@@ -2,28 +2,28 @@ let stdin = process.openStdin();
 
 function drawHourglass(size) {
   let hourglass = [];
-  for (let i = 0; i < size; i++) {
-    let line = "";
-    for (let j = 0; j < size; j++) {
-      if (i === 0 || i === size - 1 || j === 0 || j === size - 1) {
-        line += "#";
+  for (let row = 0; row < size; row++) {
+    let rowElements = "";
+    for (let column = 0; column < size; column++) {
+      if (row === 0 || row === size - 1 || column === 0 || column === size - 1) {
+        rowElements += "#";
       } else {
-        if (i === j || i + j === size - 1) {
-          line += "#";
+        if (row === column || row + column === size - 1) {
+          rowElements += "#";
         } else {
-          if (i < size / 2) {
-            if (i < j && j < size - i) {
-              line += "#";
+          if (row < size / 2) {
+            if (row < column && column < size - row) {
+              rowElements += "#";
             } else {
-              line += " ";
+              rowElements += " ";
             }
           } else {
-            line += " ";
+            rowElements += " ";
           }
         }
       }
     }
-    hourglass.push(line);
+    hourglass.push(rowElements);
   }
   return hourglass;
 }
@@ -41,10 +41,10 @@ function changeArrayPos(arr, from, to) {
 }
 
 async function animateHourglass(hourglass) {
-  let changed = [];
+  let changedHourglass = [];
   for (let i = 0; i < hourglass.length / 2; i++) {
-    changed = changeArrayPos(hourglass, [i], hourglass.length - [i]);
-    console.log(changed.join("\n"));
+    changedHourglass = changeArrayPos(hourglass, [i], hourglass.length - [i]);
+    console.log(changedHourglass.join("\n"));
     await sleep(1000);
     console.clear();
   }
