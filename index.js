@@ -31,9 +31,15 @@ function drawHourglass(size) {
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
     }
-    console.log(line);
+
+function changeArrayPos(arr, from, to) {
+  let temp = arr[from];
+  arr[from] = arr[to];
+  arr[to] = temp;
+
+  return arr;
   }
-  console.log(`\n\n\nAmpulheta: ${size}x${size}`);
+
 }
 
 console.log('Oi, qual a dimensão da ampulheta? ');
