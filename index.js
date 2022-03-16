@@ -7,11 +7,10 @@ const stdin = process.openStdin();
 console.log("Oi, qual a dimensão da ampulheta? ");
 stdin.addListener("data", async (inputValue) => {
   let size = parseInt(inputValue.toString().trim());
-  let hourglass = drawHourglass(size);
-
+  
   const isValid = await validateInput(size);
   if (isValid) {
-    console.log(hourglass.join("\n"));
+    let hourglass = drawHourglass(size);
     await animateHourglass(hourglass);
     console.log("Obrigado por usar o programa :)");
     await sleep(1000);
