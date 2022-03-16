@@ -12,7 +12,7 @@ stdin.addListener("data", async (inputValue) => {
   if (isValid) {
     let hourglass = drawHourglass(size);
     await animateHourglass(hourglass);
-    console.log("Obrigado por usar o programa :)");
+    console.log("Obrigado por usar a minha ampulheta :)");
     await sleep(1000);
     process.exit();
   }
