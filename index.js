@@ -1,4 +1,4 @@
-let stdin = process.openStdin();
+const stdin = process.openStdin();
 
 function drawHourglass(size) {
   let hourglass = [];
