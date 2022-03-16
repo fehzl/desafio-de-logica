@@ -40,6 +40,14 @@ function changeArrayPos(arr, from, to) {
   return arr;
   }
 
+async function animateHourglass(hourglass) {
+  let changed = []
+  for (let i = 0; i < hourglass.length / 2; i++) {
+    changed = changeArrayPos(hourglass, [i], hourglass.length - [i]);
+    console.log(changed.join('\n'));
+    await sleep(1000);
+    console.clear();
+  }
 }
 
 console.log('Oi, qual a dimensão da ampulheta? ');
