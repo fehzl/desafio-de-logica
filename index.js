@@ -1,6 +1,7 @@
 let stdin = process.openStdin();
 
-function drawHourglass(size, sideFilled) {
+function drawHourglass(size) {
+  let hourglass = [];
   for (let i = 0; i < size; i++) {
     let line = '';
     for (let j = 0; j < size; j++) {
@@ -10,7 +11,6 @@ function drawHourglass(size, sideFilled) {
         if (i === j || i + j === size - 1) {
           line += '#';
         } else {
-          if (sideFilled === 'TOP') {
             if(i < size / 2) {
               if (i < j && j < size - i) {
                 line += '#';
@@ -20,20 +20,12 @@ function drawHourglass(size, sideFilled) {
             } else {
               line += ' ';
             }
-          } else if (sideFilled === 'BOTTOM') {
-            if(i > size / 2) {
-              if (i >= j && j >= size - i) {
-                line += '#';
-              } else {
-                line += ' ';
               }
-            } else {
-              line += ' ';
             }
-          } else {
-            line += ' ';
           } 
+    hourglass.push(line);
         }
+  return hourglass;
       }
     }
     console.log(line);
