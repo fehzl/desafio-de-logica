@@ -11,7 +11,7 @@ function drawHourglass(size) {
         if (i === j || i + j === size - 1) {
           line += '#';
         } else {
-            if(i < size / 2) {
+          if(i < size / 2) {
               if (i < j && j < size - i) {
                 line += '#';
               } else {
@@ -20,17 +20,17 @@ function drawHourglass(size) {
             } else {
               line += ' ';
             }
-              }
-            }
-          } 
-    hourglass.push(line);
-        }
-  return hourglass;
+          }
       }
+    }
+    hourglass.push(line);
+  }
+  return hourglass;
+}
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-    }
+}
 
 function changeArrayPos(arr, from, to) {
   let temp = arr[from];
@@ -38,7 +38,7 @@ function changeArrayPos(arr, from, to) {
   arr[to] = temp;
 
   return arr;
-  }
+}
 
 async function animateHourglass(hourglass) {
   let changed = []
@@ -51,8 +51,11 @@ async function animateHourglass(hourglass) {
 }
 
 console.log('Oi, qual a dimensão da ampulheta? ');
-stdin.addListener("data", function(d) {
+stdin.addListener("data", async (d) => {
   let size = parseInt(d.toString().trim());
-  drawHourglass(size, 'BOTTOM');
+  const hourglass = drawHourglass(size);
+  console.clear()
+  
+  await animateHourglass(hourglass);
   process.exit();
 });
