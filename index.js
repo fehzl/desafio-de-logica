@@ -54,8 +54,10 @@ console.log("Oi, qual a dimensão da ampulheta? ");
 stdin.addListener("data", async (d) => {
   let size = parseInt(d.toString().trim());
   const hourglass = drawHourglass(size);
+  
   console.clear();
-
   await animateHourglass(hourglass);
+  console.log('Obrigado por usar o programa :)');
+  await sleep(2000);
   process.exit();
 });
