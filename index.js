@@ -63,13 +63,16 @@ async function validateInput(input) {
 }
 
 console.log("Oi, qual a dimensão da ampulheta? ");
-stdin.addListener("data", async (d) => {
-  let size = parseInt(d.toString().trim());
-  const hourglass = drawHourglass(size);
+stdin.addListener("data", async (inputValue) => {
+  let size = parseInt(inputValue.toString().trim());
+  let hourglass = drawHourglass(size);
   
-  console.clear();
-  await animateHourglass(hourglass);
-  console.log('Obrigado por usar o programa :)');
-  await sleep(2000);
-  process.exit();
+  const isValid = await validateInput(size);
+  if (isValid) {
+    console.log(hourglass.join("\n"));
+    await animateHourglass(hourglass);
+    console.log('Obrigado por usar o programa :)');
+    await sleep(1000);
+    process.exit(); 
+  }
 });
